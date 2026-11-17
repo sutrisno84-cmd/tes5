@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Seleksi Olimpiade Demokrasi Tingkat Sekolah</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #dc2626;
+            --primary-gradient: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            --primary-hover: linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%);
+            --gold-accent: #f59e0b;
+            --gold-gradient: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+            --danger: #dc2626;
+            --danger-gradient: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        html, body {
+            height: 100vh;
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            color: var(--text-dark);
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            position: relative;
+            background-color: #0b0304;
+        }
+
+        /* Ambient Animated Background (Nuansa Layar Demokrasi: Merah, Emas, dan Putih) */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 30%, #1c0507 0%, #080203 100%);
+        }
+
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.45;
+            animation: floatOrb 14s infinite ease-in-out alternate;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: #b91c1c;
+            top: -120px;
+            left: -100px;
+            animation-duration: 12s;
+        }
+
+        .orb-2 {
+            width: 550px;
+            height: 550px;
+            background: #7f1d1d;
+            bottom: -150px;
+            right: -100px;
+            animation-duration: 18s;
+        }
+
+        .orb-3 {
+            width: 380px;
+            height: 380px;
+            background: #d97706;
+            top: 40%;
+            left: 60%;
+            opacity: 0.35;
+            animation-duration: 11s;
+        }
+
+        .orb-4 {
+            width: 320px;
+            height: 320px;
+            background: #ffffff;
+            bottom: 15%;
+            left: 10%;
+            opacity: 0.15;
+            animation-duration: 15s;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(40px, -50px) scale(1.1); }
+            100% { transform: translate(-30px, 30px) scale(0.95); }
+        }
+
+        /* --- EFEK KILAU & PARTIKEL CAHAYA DEMOKRASI --- */
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background: #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.9), 0 0 12px rgba(245, 158, 11, 0.8);
+            animation: twinkleStar var(--duration, 2s) infinite ease-in-out alternate;
+        }
+
+        @keyframes twinkleStar {
+            0% { opacity: 0.15; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.3); }
+            100% { opacity: 0.25; transform: scale(0.7); }
+        }
+
+        /* Sorotan Cahaya Layar Demokrasi */
+        .democracy-beams {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 50% 0%, rgba(220, 38, 38, 0.25) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Main Content Wrapper */
+        .main-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Glassmorphic Card */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            width: 100%;
+            max-width: 480px;
+            padding: 36px 30px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7),
+                        0 0 35px rgba(220, 38, 38, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            text-align: center;
+            animation: cardAppear 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes cardAppear {
+            from { opacity: 0; transform: translateY(30px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(220, 38, 38, 0.08);
+            color: #dc2626;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border: 1px solid rgba(220, 38, 38, 0.2);
+        }
+
+        .badge-pill::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #dc2626;
+            display: inline-block;
+            box-shadow: 0 0 8px #dc2626;
+        }
+
+        .logo-wrapper {
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo-glow {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(239, 68, 68, 0.35);
+            filter: blur(30px);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .school-logo {
+            position: relative;
+            z-index: 1;
+            max-width: 110px;
+            height: auto;
+            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.15));
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .school-logo:hover {
+            transform: scale(1.08) rotate(-1deg);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 4px;
+            color: var(--text-dark);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .title-sub {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 22px;
+        }
+
+        .alert-box {
+            background: rgba(254, 242, 242, 0.9);
+            border: 1px solid rgba(252, 165, 165, 0.6);
+            border-left: 5px solid var(--danger);
+            padding: 14px 16px;
+            text-align: left;
+            margin-bottom: 24px;
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.05);
+        }
+
+        .alert-box strong {
+            color: #b91c1c;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .alert-box p {
+            font-size: 12.5px;
+            margin-bottom: 0;
+            color: #991b1b;
+            line-height: 1.45;
+        }
+
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.2px;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 8px 20px -4px rgba(220, 38, 38, 0.45);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px -4px rgba(220, 38, 38, 0.6);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-danger {
+            background: var(--danger-gradient);
+            color: white;
+            box-shadow: 0 8px 20px -4px rgba(220, 38, 38, 0.4);
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px -4px rgba(220, 38, 38, 0.55);
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        input[type="text"], select.select-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease;
+            -webkit-user-select: auto;
+            user-select: auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: var(--text-dark);
+        }
+
+        #unlock-code {
+            font-size: 18px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        input[type="text"]:focus, select.select-input:focus {
+            outline: none;
+            border-color: #dc2626;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.15);
+        }
+
+        select.select-input {
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23dc2626' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1.2rem center;
+            background-size: 1.1em;
+        }
+
+        /* HALAMAN SOAL (RINGAN & RESPONSIF) */
+        #exam-screen {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            background: #ffffff;
+            position: relative;
+            overflow: hidden;
+            z-index: 100;
+            transform: translateZ(0);
+        }
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            z-index: 1;
+        }
+
+        /* SENSOR SENTUH SEKALI (PILIH JAWABAN) & SCROLL SAJA */
+        #iframe-sensor-shield {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            background: transparent;
+            pointer-events: auto;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            touch-action: pan-y;
+        }
+
+        .timer-container {
+            display: none;
+            position: fixed;
+            top: 14px;
+            right: 14px;
+            background: rgba(15, 23, 42, 0.88);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            z-index: 9999;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            align-items: center;
+            gap: 8px;
+            pointer-events: none;
+        }
+
+        .timer-container span:first-child {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 480px) {
+            .card { padding: 30px 20px; border-radius: 20px; }
+            h1 { font-size: 20px; }
+            .school-logo { max-width: 95px; }
+            .timer-container { font-size: 12px; padding: 7px 13px; top: 10px; right: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dynamic Animated Background (Layar Demokrasi: Merah, Emas & Putih) -->
+    <div id="bg-animation" class="bg-animation">
+        <div class="bg-orb orb-1"></div>
+        <div class="bg-orb orb-2"></div>
+        <div class="bg-orb orb-3"></div>
+        <div class="bg-orb orb-4"></div>
+    </div>
+
+    <!-- Sorotan Cahaya Layar Demokrasi -->
+    <div id="democracy-beams" class="democracy-beams"></div>
+
+    <!-- Animated Light Particles Overlay -->
+    <div id="stars-container" class="stars-container">
+        <div class="star" style="top: 8%; left: 12%; width: 3px; height: 3px; --duration: 1.4s;"></div>
+        <div class="star" style="top: 20%; left: 85%; width: 4px; height: 4px; --duration: 2.2s;"></div>
+        <div class="star" style="top: 35%; left: 18%; width: 2px; height: 2px; --duration: 1.7s;"></div>
+        <div class="star" style="top: 55%; left: 78%; width: 3px; height: 3px; --duration: 2.5s;"></div>
+        <div class="star" style="top: 72%; left: 15%; width: 4px; height: 4px; --duration: 1.3s;"></div>
+        <div class="star" style="top: 88%; left: 92%; width: 2px; height: 2px; --duration: 2.1s;"></div>
+        <div class="star" style="top: 14%; left: 48%; width: 3px; height: 3px; --duration: 2.7s;"></div>
+        <div class="star" style="top: 68%; left: 38%; width: 4px; height: 4px; --duration: 1.8s;"></div>
+        <div class="star" style="top: 42%; left: 62%; width: 2px; height: 2px; --duration: 1.5s;"></div>
+        <div class="star" style="top: 94%; left: 45%; width: 3px; height: 3px; --duration: 2.3s;"></div>
+        <div class="star" style="top: 5%; left: 72%; width: 3px; height: 3px; --duration: 1.6s;"></div>
+        <div class="star" style="top: 48%; left: 88%; width: 4px; height: 4px; --duration: 2.9s;"></div>
+        <div class="star" style="top: 80%; left: 65%; width: 2px; height: 2px; --duration: 1.9s;"></div>
+        <div class="star" style="top: 28%; left: 33%; width: 3px; height: 3px; --duration: 2.4s;"></div>
+    </div>
+
+    <div id="exam-timer" class="timer-container">
+        <span>⏱️ Sisa Waktu:</span> <span id="timer-time">01:30:00</span>
+    </div>
+
+    <div id="start-screen" class="main-wrapper">
+        <div class="card">
+            <div class="badge-pill">Sistem Ujian Terpadu</div>
+            
+            <div class="logo-wrapper">
+                <div class="logo-glow"></div>
+                <img src="https://cdn.corenexis.com/f/rD3vm6CMiKn.png" alt="Logo Sekolah" class="school-logo">
+            </div>
+            
+            <h1>Seleksi Olimpiade Demokrasi</h1>
+            <div class="title-sub">Tingkat Sekolah</div>
+            <p class="subtitle">Silakan lengkapi data diri Anda sebelum memulai ujian. Durasi pengerjaan: 90 Menit.</p>
+
+            <div class="input-group">
+                <input type="text" id="nama-siswa" placeholder="Masukkan Nama Lengkap" autocomplete="off" required>
+            </div>
+            <div class="input-group">
+                <select id="kelas-siswa" class="select-input" required>
+                    <option value="" disabled selected>-- Pilih Kelas --</option>
+                    <option value="X.1">Kelas X.1</option>
+                    <option value="X.2">Kelas X.2</option>
+                    <option value="XI Soshum">Kelas XI Soshum</option>
+                    <option value="XI Saintek">Kelas XI Saintek</option>
+                    <option value="XII Soshum">Kelas XII Soshum</option>
+                    <option value="XII Saintek">Kelas XII Saintek</option>
+                </select>
+            </div>
+            
+            <div class="alert-box">
+                <strong>⚠️ INSTRUKSI PENTING:</strong>
+                <p>Dilarang me-refresh, membelah layar (split screen), membuka aplikasi mengambang, atau keluar dari mode layar penuh. Toleransi buka kunci maksimal 2 kali.</p>
+            </div>
+
+            <button class="btn btn-primary" onclick="mulaiUjian()">Masuk Ujian</button>
+        </div>
+    </div>
+
+    <div id="exam-screen"></div>
+
+    <div id="lock-screen" class="main-wrapper" style="display: none;">
+        <div class="card" style="border-top: 5px solid var(--danger);">
+            <div style="font-size: 50px; margin-bottom: 10px; filter: drop-shadow(0 4px 8px rgba(220,38,38,0.3));">🔒</div>
+            <h1 id="lock-title" style="color: var(--danger);">Ujian Terkunci</h1>
+            <p id="lock-desc" class="subtitle" style="margin-bottom: 12px;">Sistem mendeteksi aktivitas mencurigakan (Belah Layar, Aplikasi Mengambang, Keluar Layar Penuh, atau Refresh).</p>
+            <p id="lock-notice" style="font-weight: 700; margin-bottom: 20px; color: var(--text-dark);">Silakan panggil pengawas untuk melanjutkan.</p>
+            
+            <div id="lock-input-group" class="input-group">
+                <input type="text" id="unlock-code" placeholder="KODE AKSES GURU" autocomplete="off">
+            </div>
+            
+            <button id="lock-btn" class="btn btn-danger" onclick="bukaKunci()">Buka Kunci Akses</button>
+            <button id="lock-exit-btn" class="btn btn-primary" style="display: none; margin-top: 10px;" onclick="keluarSistem()">Keluar dari Tab Ujian</button>
+        </div>
+    </div>
+
+    <script>
+        const URL_FORM_PANCASILA = "https://forms.gle/eVFZ86cqeB38sygC6";
+        const STORAGE_KEY = 'StatusUjian_VersiFinal_v2';
+        const UNLOCK_COUNT_KEY = 'JumlahBukaKunci_v2';
+
+        // KONFIGURASI DURASI UJIAN (DALAM MENIT)
+        const DURASI_UJIAN_MENIT = 90;
+        const TOTAL_DETIK_UJIAN = DURASI_UJIAN_MENIT * 60;
+
+        let statusUjian = localStorage.getItem(STORAGE_KEY) || 'awal';
+        let sisaDetik = parseInt(localStorage.getItem('SisaWaktuUjian'));
+        if (isNaN(sisaDetik)) {
+            sisaDetik = TOTAL_DETIK_UJIAN;
+        }
+
+        let intervalTimer = null;
+
+        // ==========================================
+        // SISTEM ALARM SUARA (WEB AUDIO API - VOLUME FULL)
+        // ==========================================
+        let alarmAudioCtx = null;
+        let sirenOscillator = null;
+        let sirenGain = null;
+        let sirenInterval = null;
+
+        function bunyikanAlarm() {
+            try {
+                if (!alarmAudioCtx) {
+                    alarmAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (alarmAudioCtx.state === 'suspended') {
+                    alarmAudioCtx.resume();
+                }
+
+                if (sirenOscillator) return;
+
+                sirenOscillator = alarmAudioCtx.createOscillator();
+                sirenGain = alarmAudioCtx.createGain();
+
+                sirenOscillator.type = 'sawtooth';
+                sirenGain.gain.setValueAtTime(1.0, alarmAudioCtx.currentTime);
+
+                sirenOscillator.connect(sirenGain);
+                sirenGain.connect(alarmAudioCtx.destination);
+
+                sirenOscillator.start();
+
+                let nadaTinggi = false;
+                sirenOscillator.frequency.setValueAtTime(600, alarmAudioCtx.currentTime);
+
+                sirenInterval = setInterval(() => {
+                    if (!alarmAudioCtx || !sirenOscillator) return;
+                    if (nadaTinggi) {
+                        sirenOscillator.frequency.exponentialRampToValueAtTime(500, alarmAudioCtx.currentTime + 0.35);
+                    } else {
+                        sirenOscillator.frequency.exponentialRampToValueAtTime(1200, alarmAudioCtx.currentTime + 0.35);
+                    }
+                    nadaTinggi = !nadaTinggi;
+                }, 400);
+
+            } catch (e) {
+                console.log("Gagal memutar audio alarm:", e);
+            }
+        }
+
+        function matikanAlarm() {
+            if (sirenInterval) {
+                clearInterval(sirenInterval);
+                sirenInterval = null;
+            }
+            if (sirenOscillator) {
+                try {
+                    sirenOscillator.stop();
+                    sirenOscillator.disconnect();
+                } catch(e) {}
+                sirenOscillator = null;
+            }
+        }
+
+        const perfEntries = performance.getEntriesByType("navigation");
+        let isReloaded = false;
+        
+        if (perfEntries.length > 0 && perfEntries[0].type === "reload") {
+            isReloaded = true;
+        } else if (window.performance && window.performance.navigation.type === 1) {
+            isReloaded = true;
+        }
+
+        if (statusUjian === 'berjalan' || (statusUjian === 'berjalan' && isReloaded)) {
+            let unlockCount = parseInt(localStorage.getItem(UNLOCK_COUNT_KEY)) || 0;
+            if (unlockCount >= 2) {
+                statusUjian = 'terkunci_permanen';
+            } else {
+                statusUjian = 'terkunci';
+            }
+            localStorage.setItem(STORAGE_KEY, statusUjian);
+        }
+
+        const startScreen = document.getElementById('start-screen');
+        const examScreen = document.getElementById('exam-screen');
+        const lockScreen = document.getElementById('lock-screen');
+        const codeInput = document.getElementById('unlock-code');
+        const timerContainer = document.getElementById('exam-timer');
+        const timerDisplay = document.getElementById('timer-time');
+
+        const bgAnim = document.getElementById('bg-animation');
+        const beamsAnim = document.getElementById('democracy-beams');
+        const starsAnim = document.getElementById('stars-container');
+
+        const lockTitle = document.getElementById('lock-title');
+        const lockDesc = document.getElementById('lock-desc');
+        const lockNotice = document.getElementById('lock-notice');
+        const lockInputGroup = document.getElementById('lock-input-group');
+        const lockBtn = document.getElementById('lock-btn');
+        const lockExitBtn = document.getElementById('lock-exit-btn');
+
+        // ==========================================
+        // TIMER HITUNG MUNDUR (COUNTDOWN TIMER)
+        // ==========================================
+        function updateTimerDisplay() {
+            let jam = Math.floor(sisaDetik / 3600);
+            let menit = Math.floor((sisaDetik % 3600) / 60);
+            let detik = sisaDetik % 60;
+
+            timerDisplay.textContent = 
+                (jam < 10 ? "0" + jam : jam) + ":" + 
+                (menit < 10 ? "0" + menit : menit) + ":" + 
+                (detik < 10 ? "0" + detik : detik);
+        }
+
+        function jalankanTimer() {
+            if (intervalTimer) clearInterval(intervalTimer);
+            updateTimerDisplay();
+
+            intervalTimer = setInterval(() => {
+                if (sisaDetik <= 0) {
+                    hentikanTimer();
+                    statusUjian = 'terkunci_permanen';
+                    localStorage.setItem(STORAGE_KEY, 'terkunci_permanen');
+                    updateUI();
+                    alert("Waktu pengerjaan ujian telah habis!");
+                    return;
+                }
+                
+                sisaDetik--;
+                localStorage.setItem('SisaWaktuUjian', sisaDetik);
+                updateTimerDisplay();
+            }, 1000);
+        }
+
+        function hentikanTimer() {
+            clearInterval(intervalTimer);
+            intervalTimer = null;
+        }
+
+        function aktifkanLayarPenuh() {
+            const elem = document.documentElement;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen().catch(() => {});
+            } else if (elem.webkitRequestFullscreen) {
+                elem.webkitRequestFullscreen().catch(() => {});
+            } else if (elem.msRequestFullscreen) {
+                elem.msRequestFullscreen().catch(() => {});
+            }
+        }
+
+        function matikanLayarPenuh() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen().catch(() => {});
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen().catch(() => {});
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen().catch(() => {});
+            }
+        }
+
+        function aturAnimasiLatar(aktif) {
+            const mode = aktif ? 'block' : 'none';
+            if (bgAnim) bgAnim.style.display = mode;
+            if (beamsAnim) beamsAnim.style.display = mode;
+            if (starsAnim) starsAnim.style.display = mode;
+        }
+
+        function updateUI() {
+            startScreen.style.display = 'none';
+            examScreen.style.display = 'none';
+            lockScreen.style.display = 'none';
+            timerContainer.style.display = 'none';
+
+            let unlockedCount = parseInt(localStorage.getItem(UNLOCK_COUNT_KEY)) || 0;
+
+            if (statusUjian === 'terkunci_permanen') {
+                hentikanTimer();
+                aturAnimasiLatar(true);
+                lockScreen.style.display = 'flex';
+                examScreen.innerHTML = ''; 
+                bunyikanAlarm();
+
+                lockTitle.textContent = "Ujian Terkunci Permanen";
+                lockDesc.textContent = "Batas maksimal pelanggaran terlampaui (2x Buka Kunci) atau waktu ujian telah habis. Ujian dihentikan secara permanen.";
+                lockNotice.style.display = 'none';
+                lockInputGroup.style.display = 'none';
+                lockBtn.style.display = 'none';
+                lockExitBtn.style.display = 'inline-flex';
+
+            } else if (statusUjian === 'terkunci') {
+                hentikanTimer();
+                aturAnimasiLatar(true);
+                lockScreen.style.display = 'flex';
+                examScreen.innerHTML = ''; 
+                bunyikanAlarm();
+
+                let sisaKesempatan = 2 - unlockedCount;
+                lockTitle.textContent = "Ujian Terkunci";
+                lockDesc.textContent = "Sistem mendeteksi aktivitas mencurigakan (Belah Layar, Aplikasi Mengambang, Keluar Layar Penuh, atau Refresh).";
+                lockNotice.style.display = 'block';
+                lockNotice.innerHTML = `Silakan panggil pengawas untuk melanjutkan.<br><span style="color: var(--danger); font-size: 13px; font-weight: bold; display: block; margin-top: 6px;">(Kesempatan Buka Kunci Tersisa: ${sisaKesempatan} dari 2 kali)</span>`;
+                lockInputGroup.style.display = 'block';
+                lockBtn.style.display = 'inline-flex';
+                lockExitBtn.style.display = 'none';
+
+            } else if (statusUjian === 'berjalan') {
+                matikanAlarm();
+                aturAnimasiLatar(false);
+                examScreen.style.display = 'block';
+                timerContainer.style.display = 'flex';
+                jalankanTimer();
+
+                // Memuat IFRAME Soal Ujian + Sensor Sentuh Sekali & Scroll Saja
+                examScreen.innerHTML = `
+                    <iframe id="exam-iframe" src="${URL_FORM_PANCASILA}" allowfullscreen></iframe>
+                    <div id="iframe-sensor-shield"></div>
+                `;
+                aktifkanSensorSentuhDanScroll();
+            } else {
+                hentikanTimer();
+                matikanAlarm();
+                aturAnimasiLatar(true);
+                startScreen.style.display = 'flex';
+                examScreen.innerHTML = ''; 
+                
+                const namaTersimpan = localStorage.getItem('NamaSiswa');
+                const kelasTersimpan = localStorage.getItem('KelasSiswa');
+                if(namaTersimpan) document.getElementById('nama-siswa').value = namaTersimpan;
+                if(kelasTersimpan) document.getElementById('kelas-siswa').value = kelasTersimpan;
+            }
+        }
+
+        function mulaiUjian() {
+            const nama = document.getElementById('nama-siswa').value.trim();
+            const kelas = document.getElementById('kelas-siswa').value;
+
+            if (nama === "" || kelas === "") {
+                alert("Mohon lengkapi Nama dan Kelas terlebih dahulu sebelum masuk!");
+                return;
+            }
+
+            localStorage.setItem('NamaSiswa', nama);
+            localStorage.setItem('KelasSiswa', kelas);
+
+            if (!localStorage.getItem('SisaWaktuUjian')) {
+                sisaDetik = TOTAL_DETIK_UJIAN;
+                localStorage.setItem('SisaWaktuUjian', sisaDetik);
+            }
+
+            statusUjian = 'berjalan';
+            localStorage.setItem(STORAGE_KEY, 'berjalan');
+            
+            aktifkanLayarPenuh();
+            updateUI();
+        }
+
+        function lockExam() {
+            if (statusUjian === 'berjalan') {
+                let unlockedCount = parseInt(localStorage.getItem(UNLOCK_COUNT_KEY)) || 0;
+                
+                if (unlockedCount >= 2) {
+                    statusUjian = 'terkunci_permanen';
+                } else {
+                    statusUjian = 'terkunci';
+                }
+                
+                localStorage.setItem(STORAGE_KEY, statusUjian);
+                updateUI();
+            }
+        }
+
+        function bukaKunci() {
+            const input = codeInput.value.trim().toUpperCase();
+            if (input === "SMADA") {
+                let unlockedCount = parseInt(localStorage.getItem(UNLOCK_COUNT_KEY)) || 0;
+                unlockedCount++;
+                localStorage.setItem(UNLOCK_COUNT_KEY, unlockedCount);
+
+                matikanAlarm();
+                statusUjian = 'awal';
+                localStorage.setItem(STORAGE_KEY, 'awal');
+                codeInput.value = "";
+                updateUI();
+            } else {
+                alert("Kode akses salah. Hanya pengawas yang dapat membuka kunci.");
+            }
+        }
+
+        function keluarSistem() {
+            matikanAlarm();
+            matikanLayarPenuh();
+            
+            statusUjian = 'awal';
+            localStorage.setItem(STORAGE_KEY, 'awal');
+            localStorage.removeItem(UNLOCK_COUNT_KEY);
+            localStorage.removeItem('SisaWaktuUjian');
+            sisaDetik = TOTAL_DETIK_UJIAN;
+            
+            window.close();
+            window.open('', '_self', '');
+            window.close();
+            
+            setTimeout(() => {
+                window.location.href = "about:blank";
+            }, 300);
+        }
+
+        // =========================================================
+        // SENSOR SENTUH SEKALI (PILIH JAWABAN) & SCROLL SAJA
+        // =========================================================
+        let relockTimer = null;
+        let reclaimFocusTimer = null;
+        let modeScrollAktif = false;
+
+        function kunciPerisaiInstan() {
+            const shield = document.getElementById('iframe-sensor-shield');
+            if (shield) {
+                shield.style.pointerEvents = 'auto';
+            }
+        }
+
+        function potongSentuhanLamaIframe() {
+            // Dipanggil saat sentuhan masuk ke iframe:
+            // 1. Langsung tutup kembali perisai agar tidak bisa ditahan lebih dari 1 sentuhan
+            kunciPerisaiInstan();
+
+            // 2. Tarik fokus kembali sebelum batas long-press Android (450-500ms) tercapai
+            //    sehingga blok teks & Google otomatis tidak pernah muncul
+            const jedaPotong = modeScrollAktif ? 360 : 210;
+            modeScrollAktif = false;
+
+            clearTimeout(reclaimFocusTimer);
+            reclaimFocusTimer = setTimeout(() => {
+                if (statusUjian === 'berjalan') {
+                    window.focus();
+                }
+            }, jedaPotong);
+        }
+
+        function aktifkanSensorSentuhDanScroll() {
+            const shield = document.getElementById('iframe-sensor-shield');
+            if (!shield) return;
+
+            let startX = 0;
+            let startY = 0;
+            let touchStartTime = 0;
+            let isSwiping = false;
+
+            function izinkanAksesSingkat(durasiMs, isScroll) {
+                modeScrollAktif = isScroll;
+                shield.style.pointerEvents = 'none';
+                clearTimeout(relockTimer);
+                relockTimer = setTimeout(() => {
+                    kunciPerisaiInstan();
+                    modeScrollAktif = false;
+                }, durasiMs);
+            }
+
+            // 1. GESTUR SENTUHAN LAYAR (HP / TABLET)
+            shield.addEventListener('touchstart', function(e) {
+                if (e.touches.length > 1) return; // Tolak multi-sentuhan
+
+                const touch = e.touches[0];
+                startX = touch.clientX;
+                startY = touch.clientY;
+                touchStartTime = Date.now();
+                isSwiping = false;
+            }, { passive: true });
+
+            shield.addEventListener('touchmove', function(e) {
+                if (e.touches.length > 1) return;
+                const touch = e.touches[0];
+                const diffX = Math.abs(touch.clientX - startX);
+                const diffY = Math.abs(touch.clientY - startY);
+
+                // Jika jari mengusap layar -> buka akses singkat untuk scroll
+                if (diffX > 6 || diffY > 6) {
+                    isSwiping = true;
+                    izinkanAksesSingkat(550, true);
+                }
+            }, { passive: true });
+
+            shield.addEventListener('touchend', function() {
+                const durasiSentuh = Date.now() - touchStartTime;
+
+                // Sentuhan tahan lama (>= 220ms tanpa scroll) tetap tertahan di perisai
+                if (isSwiping) {
+                    izinkanAksesSingkat(550, true);
+                } else if (durasiSentuh < 220) {
+                    izinkanAksesSingkat(450, false);
+                }
+            }, { passive: true });
+
+            // 2. GESTUR MOUSE / TRACKPAD (LAPTOP / PC)
+            let mouseDownTime = 0;
+            let mouseStartX = 0;
+            let mouseStartY = 0;
+            let isDragging = false;
+
+            shield.addEventListener('mousedown', function(e) {
+                if (e.button !== 0) return;
+                mouseStartX = e.clientX;
+                mouseStartY = e.clientY;
+                mouseDownTime = Date.now();
+                isDragging = false;
+            });
+
+            shield.addEventListener('mousemove', function(e) {
+                if (e.buttons === 1) {
+                    if (Math.abs(e.clientX - mouseStartX) > 6 || Math.abs(e.clientY - mouseStartY) > 6) {
+                        isDragging = true;
+                    }
+                }
+            });
+
+            shield.addEventListener('mouseup', function(e) {
+                if (e.button !== 0) return;
+                const durasiKlik = Date.now() - mouseDownTime;
+
+                if (!isDragging && durasiKlik < 220) {
+                    izinkanAksesSingkat(450, false);
+                }
+            });
+
+            shield.addEventListener('wheel', function() {
+                izinkanAksesSingkat(550, true);
+            }, { passive: true });
+
+            shield.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
+        }
+
+        // ==========================================
+        // FITUR KEAMANAN TAMBAHAN (SPLIT SCREEN & FLOATING)
+        // ==========================================
+
+        // 1. DETEKSI KELUAR DARI FULLSCREEN
+        document.addEventListener("fullscreenchange", checkFullscreen);
+        document.addEventListener("webkitfullscreenchange", checkFullscreen);
+
+        function checkFullscreen() {
+            const isFull = document.fullscreenElement || document.webkitFullscreenElement;
+            if (!isFull && statusUjian === 'berjalan') {
+                lockExam();
+            }
+        }
+
+        // 2. DETEKSI PERUBAHAN UKURAN RASIO LAYAR (SPLIT SCREEN)
+        window.addEventListener("resize", () => {
+            if (statusUjian === 'berjalan') {
+                let rasioTinggi = window.innerHeight / screen.height;
+                if (rasioTinggi < 0.65) {
+                    lockExam();
+                }
+            }
+        });
+
+        // 3. DETEKSI INTERAKSI IFRAME & APLIKASI MENGAMBANG / FOKUS HILANG
+        window.addEventListener("blur", () => {
+            if (statusUjian === 'berjalan') {
+                const iframe = document.getElementById("exam-iframe");
+                // Jika fokus masuk ke iframe soal, langsung jalankan pemotong long-press
+                if (document.activeElement === iframe) {
+                    potongSentuhanLamaIframe();
+                    return;
+                }
+
+                // Jika fokus pindah ke luar halaman ujian (split screen / floating app)
+                setTimeout(() => {
+                    if (document.activeElement !== iframe && !document.hasFocus()) {
+                        lockExam();
+                    }
+                }, 300);
+            }
+        });
+
+        // 4. DETEKSI PINDAH TAB / VISIBILITAS
+        document.addEventListener("visibilitychange", () => {
+            if (document.visibilityState === "hidden") {
+                lockExam();
+            }
+        });
+
+        // 5. DETEKSI REFRESH ATAU MENUTUP HALAMAN
+        window.addEventListener("beforeunload", function () {
+            if (statusUjian === 'berjalan') {
+                let unlockedCount = parseInt(localStorage.getItem(UNLOCK_COUNT_KEY)) || 0;
+                let statusLock = (unlockedCount >= 2) ? 'terkunci_permanen' : 'terkunci';
+                localStorage.setItem(STORAGE_KEY, statusLock);
+            }
+        });
+
+        window.addEventListener("pagehide", function () {
+            if (statusUjian === 'berjalan') {
+                let unlockedCount = parseInt(localStorage.getItem(UNLOCK_COUNT_KEY)) || 0;
+                let statusLock = (unlockedCount >= 2) ? 'terkunci_permanen' : 'terkunci';
+                localStorage.setItem(STORAGE_KEY, statusLock);
+            }
+        });
+
+        // 6. BLOKIR KLIK KANAN DAN PINTASAN KEYBOARD
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F5' || (e.ctrlKey && (e.key === 'r' || e.key === 'R'))) {
+                e.preventDefault();
+                lockExam();
+            }
+        });
+
+        updateUI();
+    </script>
+</body>
+</html>
